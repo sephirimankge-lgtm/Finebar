@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SideSlide: Toggleable Sidebar</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <custom-navbar></custom-navbar>
+    
+    <div class="main-container flex min-h-[calc(100vh-4rem)]">
+        <!-- Main content -->
+        <main class="flex-1 p-6 transition-all duration-300 ease-in-out">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Dashboard</h1>
+                <button id="sidebarToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cards -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Card Title</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Some content here...</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Card Title</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Some content here...</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Card Title</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Some content here...</p>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-64 bg-gradient-to-b from-indigo-600 to-purple-700 text-white p-6 transition-all duration-300 ease-in-out transform translate-x-full fixed right-0 top-16 h-[calc(100vh-4rem)] overflow-y-auto z-20">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-xl font-bold">Sidebar</h2>
+                <button id="closeSidebar" class="p-1 rounded-full hover:bg-purple-800 transition-colors">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            
+            <nav>
+                <ul class="space-y-4">
+                    <li><a href="#" class="flex items-center gap-3 hover:bg-purple-800 p-2 rounded transition-colors"><i data-feather="home"></i> Home</a></li>
+                    <li><a href="#" class="flex items-center gap-3 hover:bg-purple-800 p-2 rounded transition-colors"><i data-feather="settings"></i> Settings</a></li>
+                    <li><a href="#" class="flex items-center gap-3 hover:bg-purple-800 p-2 rounded transition-colors"><i data-feather="user"></i> Profile</a></li>
+                    <li><a href="#" class="flex items-center gap-3 hover:bg-purple-800 p-2 rounded transition-colors"><i data-feather="mail"></i> Messages</a></li>
+                    <li><a href="#" class="flex items-center gap-3 hover:bg-purple-800 p-2 rounded transition-colors"><i data-feather="help-circle"></i> Help</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mt-8 pt-4 border-t border-purple-500">
+                <h3 class="font-semibold mb-3">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-purple-200 hover:text-white transition-colors">Documentation</a></li>
+                    <li><a href="#" class="text-purple-200 hover:text-white transition-colors">Support</a></li>
+                    <li><a href="#" class="text-purple-200 hover:text-white transition-colors">Feedback</a></li>
+                </ul>
+            </div>
+        </aside>
+        
+        <!-- Overlay (hidden by default) -->
+        <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-10 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    </div>
+    
+    <custom-footer></custom-footer>
+    
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+        // Initialize theme based on user preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</body>
+</html>
