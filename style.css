@@ -1,0 +1,25 @@
+/* Custom styles */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Sidebar transition when toggled */
+.sidebar-open #sidebar {
+    transform: translateX(0);
+}
+
+.sidebar-open #overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar-open main {
+    margin-right: 16rem; /* Adjust based on sidebar width */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar-open main {
+        margin-right: 0;
+    }
+}
